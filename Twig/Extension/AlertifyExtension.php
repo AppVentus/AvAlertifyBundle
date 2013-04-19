@@ -53,6 +53,9 @@ class AlertifyExtension extends \Twig_Extension
 
         $renders = array();
         foreach ($flashes as $key => $flash) {
+            if(isset($flash[0])){
+                $flash = $flash[0];
+            }
             switch ($key) {
                 case 'modal':
                     $renders[$key] = $this->environment->render('AvAwesomeAlertifyBundle:Modal:modal.html.twig',$flash);

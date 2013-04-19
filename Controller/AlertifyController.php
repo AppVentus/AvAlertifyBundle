@@ -38,7 +38,7 @@ class AlertifyController extends Controller {
         foreach($request->request->all() as $name => $option){
             $options[$name] = $option;
         }
-        $this->get('session')->setFlash($request->get('main_type'), $options);
+        $this->get('session')->getFlashBag()->add($options['main_type'], $options);
         return array();
     }
 }
