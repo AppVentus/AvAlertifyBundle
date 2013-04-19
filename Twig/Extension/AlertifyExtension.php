@@ -65,7 +65,7 @@ class AlertifyExtension extends \Twig_Extension
                 break;
                 case 'callback':
                     $flash['body'] .= $this->environment->render('AvAwesomeAlertifyBundle:Modal:callback.html.twig', $flash);
-                    $session->getFlashBag->add($flash['type'], $flash);
+                    $session->getFlashBag()->add($flash['type'], $flash);
                     $renders[$key] = $this->alertifyFilter($session);
                 break;
                 default:
