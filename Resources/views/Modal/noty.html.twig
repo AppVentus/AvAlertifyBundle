@@ -1,16 +1,16 @@
+
+{% if theme is not defined %}
+    {% set theme = "twitter" %}
+{% endif %}
 <script type="text/javascript" src="{{asset('bundles/avawesomealertify/noty/js/jquery.noty.js')}}"></script>
 <link href="{{asset('bundles/avawesomealertify/noty/css/jquery.noty.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('bundles/avawesomealertify/noty/css/noty_theme_default.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{asset('bundles/avawesomealertify/noty/css/noty_theme_growl.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('bundles/avawesomealertify/noty/css/noty_theme_'~theme~'.css')}}" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
 
 $(document).ready(function(){
-    
-    noty({text: "{{body|raw}}", type:"{{type}}", layout:"{{layout}}", theme: "noty_theme_growl"{% if timeout is defined %}, timeout : {{timeout}}{% endif %} });
-
+    noty({text: "{{body|raw}}", type:"{{type}}", layout:"{{layout}}", theme: "noty_theme_{{theme}}"{% if timeout is defined %}, timeout : {{timeout}}{% endif %} });
 });
-    
-</script>
 
+</script>
 
