@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    noty({text: "{{body|raw}}", type:"{{type}}", layout:"{{layout}}", theme: "noty_theme_{{theme}}"{% if timeout is defined %}, timeout : {{timeout}}{% endif %} });
+    noty({text: "{{body|raw}}", type:"{{type}}", layout:"{{layout}}", theme: "noty_theme_{{theme}}"{% if timeout %}, timeout : {{timeout}}{% endif %} });
 });
 
 </script>
