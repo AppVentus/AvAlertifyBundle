@@ -28,34 +28,50 @@
 
         function getParams(el){
             var type = $(el).attr("data-alertify");
+            var params = {};
+            var callback = false;
+            if(type == "callback"){
+                type = $(el).data('type');
+                callback = true;
+            }
+
             if(type == "modal"){
-                console.log($(el).data('body'));
 
                 var body = $(el).data('body');
                 if (!body) {
                     body = $(el).data('body-target') ? $($(el).data('body-target')).html() : "";
                 }
 
-                var params = {
+                params = $.extend({}, params, {
                     'main_type':    "modal",
                     'title':        $(el).data('title'),
                     'body':         body,
                     'button_class': $(el).data('button'),
                     'width':        $(el).data('width'),
                     'static':       ($(el).data('static') ? "true" : "")
-                }
+                });
             }else if(type == "noty" || type == "toastr"){
-                var params = {
+                params = $.extend({}, params, {
                     'main_type': type,
                     'body':    $(el).data('body'),
                     'type':    $(el).data('type'),
                     'layout':  $(el).data('layout'),
                     'timeout': $(el).data('timeout')
-                }
+                });
             }else{
                 alert("Il semble s'êre produit une erreur");
                 $('#canvasloader-container').fadeOut();
             }
+            if (callback){
+                params = $.extend({}, params, {
+                    'main_type':    "callback",
+                    'type':         $(el).data('type'),
+                    'action':        $(el).data('action')?$(el).data('action'):$(el).attr('href'),
+                    'args':         $(el).data('args'),
+                    'actionType':        $(el).data('actionType'),
+                });
+            }
+            console.log(params);
             return params;
         }
     });
